@@ -1,3 +1,8 @@
+using FakeArchive.Data;
+using Microsoft.EntityFrameworkCore;
+
+using System.Collections.Generic;
+
 namespace FakeArchive
 {
     public class Program
@@ -8,6 +13,10 @@ namespace FakeArchive
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            //Set up the database context.
+            builder.Services.AddDbContext<MainFakeArchiveContext>(options =>
+                     options.UseSqlServer("Name=ConnectionStrings:DefaultConnection"));
 
             var app = builder.Build();
 
